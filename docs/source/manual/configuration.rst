@@ -767,6 +767,89 @@ Name                   Default      Description
 type                   REQUIRED     The filter type.
 ====================== ===========  ================
 
+.. _man-configuration-json-layout:
+
+JSON layout
+------------
+
+.. code-block:: yaml
+
+    layout:
+      type: json
+      timestampFormat: "yyyy-MM-dd'T'HH:mm:ss.SSSZ"
+      includeTimestamp: true
+      prettyPrint: false
+      appendLineSeparator: true
+      includeLevel: true
+      includeThreadName: true
+      includeMDC: true
+      includeLoggerName: true
+      includeMessage: true
+      includeException: true
+      includeContextName: false
+      customFieldNames:
+        timestamp: "@timestamp"
+
+=======================  ===========  ================
+Name                     Default      Description
+=======================  ===========  ================
+includeTimestamp         true         Whether to include the timestamp of the event to the JSON map.
+timestampFormat          (none)       By default, the timestamp is not formatted; To format the timestamp using set the property with the
+                                      corresponding ``DateTimeFormatter`` string, for example, {@code yyyy-MM-dd HH:mm:ss.SSSZ}.
+prettyPrint              false        Whether the JSON output should be formatted for human readability.
+appendLineSeparator      true         Whether to append a line separator at the end of the message formatted as JSON.
+customFieldNames         (empty)      A map of field name replacements in the generated map. For example ``requestTime:request_time, userAgent:user_agent)``
+includeLevel             true         Whether to include the logging level to the JSON message as the ``level`` field.
+includeThreadName        true         Whether to include the thread name to the JSON message as the ``thread`` field.
+includeMdc               true         Whether to include the MDC properties to the JSON message as the ``mdc`` field.
+includeLoggerName        true         Whether to include the logger name to the JSON message as the ``logger`` field.
+includeMessage           true         Whether to include the formatted message to the JSON message as the ``message`` field ..
+includeException         true         Whether to log exceptions. If the property enabled and there is an exception,
+                                      it will be formatted to a string added to the JSON message as the ``exception`` field.
+
+
+.. _man-configuration-json-access-layout:
+
+JSON access log layout
+------------
+
+.. code-block:: yaml
+
+    layout:
+      type: access-json
+      timestampFormat: "yyyy-MM-dd'T'HH:mm:ss.SSS'Z'"
+      prettyPrint: false
+      includeTimestamp: true
+      appendLineSeparator: true
+      includeRemoteAddr: false
+      includeRemoteUser: true
+      includeRequestTime: true
+      includeRequestURI: true
+      includeStatusCode: true
+      includeMethod: true
+      includeProtocol: true
+      includeContentLength: true
+      includeRequestURL: false
+      includeRemoteHost: false
+      includeServerName: false
+      includeRequestHeaders: false
+      includeRequestParameters: true
+      includeUserAgent: true
+      includeResponseHeaders: false
+      includeLocalPort: false
+      includeRequestContent: false
+      includeResponseContent: false
+
+=======================  ===========  ================
+Name                     Default      Description
+=======================  ===========  ================
+includeTimestamp         true         Whether to include the timestamp of the event to the JSON map.
+timestampFormat          (none)       By default, the timestamp is not formatted; To format the timestamp using set the property with the
+                                      corresponding ``DateTimeFormatter`` string, for example, {@code yyyy-MM-dd HH:mm:ss.SSSZ}.
+prettyPrint              false        Whether the JSON output should be formatted for human readability.
+appendLineSeparator      true         Whether to append a line separator at the end of the message formatted as JSON.
+customFieldNames         (empty)      A map of field name replacements in the generated map. For example ``requestTime:request_time, userAgent:user_agent)``
+includeRemoteAddr        false
 .. _man-configuration-metrics:
 
 Metrics
